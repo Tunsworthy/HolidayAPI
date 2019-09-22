@@ -6,9 +6,9 @@ const auth = function(req, res, next) {
     if(req.header('Authorization') == null){res.status(401).send({error: 'No authorized token provided'})}
     else{
          const token = req.header('Authorization').replace('Bearer ', '')
-         const data = process.env.AccessKey
+         const data = jwt.verify(token, process.env.JWT_KEY)
          const check = new Promise(function(resolve, reject) {
-        resolve(User.findOne({ _id: data._id, 'token': token }))
+            resolve(User.findOne({ _id: data._id, 'tokens.token': token }))
         });
         (async function() {
             try {
