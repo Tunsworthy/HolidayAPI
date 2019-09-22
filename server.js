@@ -9,6 +9,7 @@ var express = require('express');
 	port = process.env.PORT || 3000;
 	mongourl = process.env.MONGODB_URI;
 	cors = require('cors');
+	jwt = require('jsonwebtoken');
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose.connect(mongourl, {useNewUrlParser: true}); 
@@ -30,7 +31,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//app.use(auth);
+app.use(auth);
 routes(app);
 locations(app);
 checkin(app);
