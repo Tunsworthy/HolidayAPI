@@ -7,7 +7,19 @@ var Locationsschema = new Schema({
     type: String,
     required: 'code'
   },
+  type: {
+    type: String,
+  },
   description: {
+    type: String,
+  },
+  checkin: {
+    type: Date,
+  },
+  checkout: {
+    type: Date,
+  },
+  address: {
     type: String,
   },
   lat: {
